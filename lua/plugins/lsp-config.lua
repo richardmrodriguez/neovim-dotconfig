@@ -11,9 +11,7 @@ return {
         config = function()
             require("mason-lspconfig").setup(
                 {
-                    ensure_installed = {
-                        "lua_ls"
-                    }
+                    ensure_installed = { "lua_ls" }
                 }
             )
         end
@@ -22,7 +20,10 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({})
+            lspconfig.lua_ls.setup({
+                name = "godot",
+                cmd = vim.lsp.rpc.connect("127.0.0.1", "6005"),
+            })
         end
     }
 }
